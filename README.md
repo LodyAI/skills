@@ -19,7 +19,7 @@ npx skills add LodyAI/skills --skill lody-cli -g
 
 ## Available skills
 
-- [`lody`](skills/lody/SKILL.md) — User guide, workflows, best practices, troubleshooting, and source-code reference map for Lody across desktop, web, mobile, and CLI.
+- [`lody`](skills/lody/SKILL.md) — User guide, actionable in-app links, troubleshooting, and source-code reference map for Lody across desktop, web, mobile, and CLI.
 - [`lody-cli`](skills/lody-cli/SKILL.md) — Drive Lody from a terminal with the `lody` CLI (sessions, schedules, automations, agent configs, Roles, MCP servers, projects, machines, the background runtime, sync/export and review rendering).
 
 ## License
