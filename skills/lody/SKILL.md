@@ -70,8 +70,34 @@ workspace
 | Run several independent tasks yourself | Open separate sessions in isolated **Worktrees** (or **Child Tabs** when you intentionally want agents sharing uncommitted files). |
 | Have one coordinator agent split, steer, and collect work across sessions or machines | **Agent Session Control** (`lody_session_create`, `lody_session_chat`, or `@` mentioning a session / Role). |
 | Keep a command running after the current turn ends, or wake the session when a condition becomes true | **Lody Automations** (`lody_automation` `run` / `register`, or session settings `recoverCapacity`, `compactWhenIdle`, `archiveAfterMerge`, `autoDeliver`). |
-| Send one message at a future time or right after a Claude 5-hour quota reset | **Schedule send…** (`+` menu in an existing chat) or **Send continue after reset**. |
+| Send one message at a future time or automatically resume after quota limits clear | **Schedule send…** (`+` menu in an existing chat) or session **`recoverCapacity`** automation (plus **Send continue after reset** when offered). |
 | Run a prompt on a recurring clock (cron/interval/daily/weekdays) or as a reusable manual trigger | **Scheduled Tasks** (`Schedules` in sidebar, `lody schedule`, or agent-proposed card via `lody_schedule` action `propose`). |
+
+## Actionable replies: Proposal Cards and `lody://` Action Links
+
+Whenever a user asks how to configure, open, or set up something in Lody, make the answer directly actionable instead of prose-only:
+
+1. **Stage in-chat confirmation cards first when Lody MCP supports it** (inside a Lody session, after reading `lody_help`):
+   - **Agent Roles** — Call `lody_catalog` (`machines`, `agent_configs`) to resolve IDs, then call `lody_agent_role` (`create` or `update`) so the user can click **Save** directly on the review card.
+   - **Scheduled Tasks** — Call `lody_schedule` (`action: "propose"`) to post a **Schedule this task?** card in chat.
+   - **Workspace MCP Servers** — On an explicit user request, call `lody_mcp_configure` to create the unselected catalog entry, then include `[Authenticate & Enable in MCP Settings](lody://settings/mcp?server=<id>)` so one click opens that server's local keyring/OAuth editor.
+2. **Pair UI breadcrumb paths with clickable `lody://` Action Links** — Always write both the human-readable menu path and the Markdown link so older clients and external terminals stay readable while Lody renders an interactive chip that opens the exact modal/dialog in place:
+   - Example: `Open **Settings -> Agents** ([Configure Codex](lody://settings/agents?create=codex))`
+   - When inside a Lody session and targeting a machine-scoped surface (`agents`, `agent-roles`, `machines`, `memory`, `projects`), inspect `lody_catalog` first when practical so you can append `&machine=<machineId>` (or `?config=<agentConfigId>`).
+
+| Destination | Canonical `lody://` URI | Notes & allowed parameters |
+| --- | --- | --- |
+| Create Agent Config (pre-selected) | `lody://settings/agents?create=<target>[&machine=<id>]` | `<target>`: `codex`, `claude`, `kimi`, `deepseek`, `pi`, `devin`, `grok`, `antigravity`, `bub`, `dimcode`, `glm-over-claude-code`, `mimo-over-claude-code`, `minimax-over-claude-code`, `custom`, or `registry:<id>` (e.g. `registry:opencode`) |
+| Edit / refresh existing Agent Config | `lody://settings/agents?config=<configId>[&machine=<id>]` | Opens that config's edit & capability-refresh dialog |
+| Agent Roles | `lody://settings/agent-roles[?create=1 \| ?role=<id>][&machine=<id>]` | Opens Role list, new-Role dialog, or an editable Role |
+| MCP Servers | `lody://settings/mcp[?create=1 \| ?server=<id>]` | Opens MCP list, add dialog, or a specific server's editor/auth |
+| Projects, Worktree scripts & Skills | `lody://settings/projects` | Add folder/group: `?add=local[&machine=<id>]` or `?add=group`. Open project tab: `?repo=<owner/name>[&page=<p>]` or `?machine=<id>&local=<projectId>[&page=<p>]` (`<p>`: `general`, `worktree`, `skills`, `defaultMcp`, or local-only `conversations`) |
+| Prompt Shortcuts | `lody://settings/prompt-shortcuts[?create=1]` | Opens Prompt Shortcuts or its new-shortcut editor |
+| Scheduled Tasks | `lody://schedules[?create=1 \| ?schedule=<id>]` | Opens Schedules list, new-schedule editor, or a schedule's detail |
+| Specific Session | `lody://session/<sessionId>[?workspace=<workspaceId>]` | Renders as a conversation chip (`[@Title](lody://session/...)`) |
+| Other Settings tabs | `lody://settings/<tab>[?workspace=<id>]` | `<tab>`: `machines` (`&machine=<id>`), `memory` (`&machine=<id>`), `github`, `preferences`, `appearance`, `keyboard-shortcuts`, `workspace` (members & encryption console button), `shares`, `ai-usage`, `billing`, `data`, `account`, `about`, `lody-agent` |
+
+- **Strict validation boundary**: Every `lody://` link above also accepts optional `workspace=<workspaceId>`. Never add unlisted parameters (`command`, `url`, `env`, `apiKey`, `token`, `prompt`, trailing slashes, or `#fragments`) — Lody's parser rejects non-allowlisted query keys and strips invalid links for security.
 
 ## Reference routing
 

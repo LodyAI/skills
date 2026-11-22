@@ -37,13 +37,13 @@ Automations run on the session's owning machine daemon. For exact condition cont
 ## Scheduled messages and Scheduled tasks
 
 - **One-off Scheduled send** — In an existing conversation, click **`+ -> Schedule send…`** to send text/attachments once at a future time on the target machine's clock (catches up once if offline at the target time).
-- **Continue after Claude quota reset** — When a Claude 5-hour session limit hits and the provider supplies a valid reset timestamp (with no longer window exhausted), click **Send continue after reset** above the composer to schedule `continue` 1 second after reset.
-- **Scheduled tasks (`Schedules` in sidebar / `lody schedule` / `lody_schedule`)**:
+- **Quota reset continuation** — Session-level **`recoverCapacity`** automation (enabled from the quota-failure banner or `lody_automation` `configure`) automatically resumes the session after provider quota limits clear; where offered above the composer, **Send continue after reset** schedules a one-off `continue` 1 second after a verified Claude 5-hour reset timestamp.
+- **Scheduled tasks (`Schedules` in sidebar / `lody://schedules` / `lody schedule` / `lody_schedule`)**:
   - **Execution model**: Owned and executed by **one of your machines** (never in the cloud; does not wake a sleeping computer). Schedule times use **that machine's local time zone**.
   - **Triggers**: `manual` (Run now only), `once`, `interval` / `minutes` / `hours`, `daily`, `weekdays`, `weekly`, `monthly`, or `cron` (CLI).
   - **Destinations**: `new_session` (default), `own_session` (one reusable chat for that schedule), or `existing_session`.
   - **Missed & overlapping runs**: Offline misses run **once** on reconnect (`run_once`, or `skip` in CLI drafts); overlapping runs queue at most one (`queue_one` or `skip`).
-  - **Human consent boundary**: Inside an agent session (`LODY_AGENT_SESSION_ID` set), agents can only list/read (`lody_catalog` `schedules`), `pause`, or **`propose`** (`lody_schedule` action `propose`), which posts a **Schedule this task?** card requiring the user to click **Create**.
+  - **Human consent boundary**: Inside an agent session (`LODY_AGENT_SESSION_ID` set), agents can only list/read (`lody_catalog` `schedules`), `pause`, or **`propose`** (`lody_schedule` action `propose`), which posts a **Schedule this task?** card requiring the user to click **Create** (or share `[New Schedule](lody://schedules?create=1)` when the user prefers filling the editor manually).
 
 ## Team collaboration, GitHub, and Mobile
 
