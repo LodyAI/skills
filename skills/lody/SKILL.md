@@ -1,11 +1,11 @@
 ---
 name: lody
-description: Answer questions about using Lody, explain workspaces, sessions, tabs, worktrees, Agent Configs, Agent Roles, MCP servers, previews, schedules, automations, team sharing, mobile, and end-to-end encrypted workspaces, surface actionable in-app links and proposal cards, and inspect Lody's open-source implementation when exact product details are needed.
+description: Answer questions about using Lody, recommend high-leverage Lody workflows and best practices, explain workspaces, sessions, tabs, worktrees, Agent Configs, Agent Roles, MCP servers, previews, schedules, automations, team sharing, mobile, and end-to-end encrypted workspaces, surface actionable in-app links and proposal cards, and inspect Lody's open-source implementation when exact product details are needed.
 ---
 
 # Lody User Guide & Product Reference
 
-Use this skill when the user asks how Lody works, how to configure or troubleshoot a Lody feature, or where a capability lives in Lody.
+Use this skill when the user asks how Lody works, how to configure or troubleshoot a Lody feature, where a capability lives, or how to use Lody more effectively.
 
 ## How to answer Lody questions
 
@@ -61,6 +61,7 @@ Load only the reference file that matches the user's question:
 | Topic | Reference file |
 | --- | --- |
 | Core mental model (workspace, machine, project, session, round hierarchy) and workspace editions (Cloud, E2EE, Open-Source Local) | [references/mental-model.md](references/mental-model.md) |
+| High-leverage workflows, container selection (`Side Chat` vs. `Child Tab` vs. `Worktree`), Role team design, Coordinator orchestration, spatial feedback, and mobile/automation habits | [references/best-practices.md](references/best-practices.md) |
 | Composer (`@` mentions, `$` skills, `/` commands, Prompt Shortcuts, drag-and-drop), Message Queue & Steer, Tabs, Worktree scripts, Files/Diffs, Web & Simulator Previews, `lody review`, Embedded Terminal, Zen Mode, Keyboard Shortcuts | [references/sessions-ui-and-collab.md](references/sessions-ui-and-collab.md) |
 | Agent Configs & Runtimes (Claude, Codex profiles/forecasts, Kimi, DeepSeek, Devin, Pi, Magpie import, ACP Registry, Custom ACP), capability refresh, Agent Roles, Role Memory (`nmem`), built-in & custom MCP servers, MCP credential security | [references/agents-roles-and-mcp.md](references/agents-roles-and-mcp.md) |
 | Multi-agent Session Orchestration rules & placement, Lody Automations, Scheduled Send & Scheduled Tasks, Team & Machine sharing, GitHub integration, Mobile (iOS Live Activities / Android), E2EE Workspaces & pairing, AI Usage, Quota & Workspace Data export/import | [references/orchestration-schedules-and-team.md](references/orchestration-schedules-and-team.md) |
