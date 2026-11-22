@@ -56,7 +56,7 @@ Check in order:
 | Public docs, changelog & `llms.txt` generator | `site-docs/content/docs/{en,zh}/`, `site-docs/content/changelog/`, `site-docs/scripts/generate-llms.mjs` |
 | Exact English & Chinese UI labels | `locales/en.json`, `locales/zh_CN.json` |
 | Shared schemas, history, Role/MCP/Schedule contracts | `packages/shared/src/` (`session-data/`, `acp/`, `schedule-control.ts`, `electron-ipc.ts`) |
-| Shared React UI (sessions, composer, diffs, sidebar) | `packages/components/src/components/` (`sessions/`, `ai-gui/`, `commands/`, `mobile/`, `harness/`) |
+| Shared React UI (sessions, composer, diffs, sidebar) | `packages/components/src/components/` (`sessions/`, `ai-gui/`, `commands/`, `mobile/`) |
 | All Settings pages & tab visibility gates | `packages/components/src/components/settings/` (`settings-tabs.tsx` lists every tab and capability gate) |
 | Command palette & keyboard shortcuts | `packages/components/src/lib/commands/` (`shortcuts.ts`, `registry.ts`, `built-ins.ts`) |
 | CLI subcommands & flags | `apps/cli/src/commands/` and `apps/cli/src/index.ts` |
@@ -71,6 +71,7 @@ Check in order:
 | End-to-end encryption & machine-sharing policy | `packages/e2ee-core/`, `packages/e2ee-client/`, `packages/e2ee-machine-sharing/`, `packages/client-e2ee/` |
 | Platform capability gates & public cloud DTOs | `packages/platform/`, `packages/cloud-api/` |
 
-### Step 4: Respect the open-source repository boundary
+### Step 4: Respect repository and visibility boundaries
 
-`apps/{cli,electron,mobile}` and the shared `packages/*` above are open source in `LodyAI/Lody`. Hosted cloud backend services, server-side billing/operator configuration, and private web deployment wrappers live outside the public repository (only public protocol names, DTOs, and capability contracts appear in `packages/cloud-api` and `packages/platform`). If a user asks about hosted server internals beyond those public contracts, explain that only the client/daemon/protocol side is in the public repo.
+- **Open-source boundary**: `apps/{cli,electron,mobile}` and the shared `packages/*` above are open source in `LodyAI/Lody`. Hosted cloud backend services, server-side billing/operator configuration, and private web deployment wrappers live outside the public repository (only public protocol names, DTOs, and capability contracts appear in `packages/cloud-api` and `packages/platform`). If a user asks about hosted server internals beyond those public contracts, explain that only the client/daemon/protocol side is in the public repo.
+- **Hidden internal gates**: When reading source code, do **not** surface internal debug switches (`developerModeEnabledAtom`) or unpublished toggles gated behind them in user-facing answers; keep answers scoped to shipped user-visible capabilities.

@@ -50,7 +50,7 @@ Whenever a user asks how to configure, open, or set up something in Lody, make t
 | Prompt Shortcuts | `lody://settings/prompt-shortcuts[?create=1]` | Opens Prompt Shortcuts or its new-shortcut editor |
 | Scheduled Tasks | `lody://schedules[?create=1 \| ?schedule=<id>]` | Opens Schedules list, new-schedule editor, or a schedule's detail |
 | Specific Session | `lody://session/<sessionId>[?workspace=<workspaceId>]` | Renders as a conversation chip (`[@Title](lody://session/...)`) |
-| Other Settings tabs | `lody://settings/<tab>[?workspace=<id>]` | `<tab>`: `machines` (`&machine=<id>`), `memory` (`&machine=<id>`), `github`, `preferences`, `appearance`, `keyboard-shortcuts`, `workspace` (members & encryption console button), `shares`, `ai-usage`, `billing`, `data`, `account`, `about`, `lody-agent` |
+| Other Settings tabs | `lody://settings/<tab>[?workspace=<id>]` | `<tab>`: `machines` (`&machine=<id>`), `memory` (`&machine=<id>`), `github`, `preferences`, `appearance`, `keyboard-shortcuts`, `workspace` (members & encryption console button), `shares`, `ai-usage`, `billing`, `data`, `account`, `about` |
 
 - **Strict validation boundary**: Every `lody://` link above also accepts optional `workspace=<workspaceId>`. Never add unlisted parameters (`command`, `url`, `env`, `apiKey`, `token`, `prompt`, trailing slashes, or `#fragments`) — Lody's parser rejects non-allowlisted query keys and strips invalid links for security.
 
@@ -62,6 +62,6 @@ Load only the reference file that matches the user's question:
 | --- | --- |
 | Core mental model (workspace, machine, project, session, round hierarchy) and workspace editions (Cloud, E2EE, Open-Source Local) | [references/mental-model.md](references/mental-model.md) |
 | Composer (`@` mentions, `$` skills, `/` commands, Prompt Shortcuts, drag-and-drop), Message Queue & Steer, Tabs, Worktree scripts, Files/Diffs, Web & Simulator Previews, `lody review`, Embedded Terminal, Zen Mode, Keyboard Shortcuts | [references/sessions-ui-and-collab.md](references/sessions-ui-and-collab.md) |
-| Agent Configs & Runtimes (Claude, Codex profiles/forecasts, Kimi, DeepSeek, Devin, Pi, Magpie import, ACP Registry, Custom ACP, Lody Agent), capability refresh, Agent Roles, Role Memory (`nmem`), built-in & custom MCP servers, MCP credential security | [references/agents-roles-and-mcp.md](references/agents-roles-and-mcp.md) |
+| Agent Configs & Runtimes (Claude, Codex profiles/forecasts, Kimi, DeepSeek, Devin, Pi, Magpie import, ACP Registry, Custom ACP), capability refresh, Agent Roles, Role Memory (`nmem`), built-in & custom MCP servers, MCP credential security | [references/agents-roles-and-mcp.md](references/agents-roles-and-mcp.md) |
 | Multi-agent Session Orchestration rules & placement, Lody Automations, Scheduled Send & Scheduled Tasks, Team & Machine sharing, GitHub integration, Mobile (iOS Live Activities / Android), E2EE Workspaces & pairing, AI Usage, Quota & Workspace Data export/import | [references/orchestration-schedules-and-team.md](references/orchestration-schedules-and-team.md) |
 | Troubleshooting playbook (auth, 3-state machine presence, cache reset vs. hard reset, daemon logs/upgrades, machine identity restore) + **Lody Source Code & Spec Map** for verifying implementation details | [references/source-and-troubleshooting.md](references/source-and-troubleshooting.md) |
