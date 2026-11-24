@@ -34,7 +34,7 @@ Whenever a user asks how to configure, open, or set up something in Lody, make t
 
 1. **Stage in-chat confirmation cards first when Lody MCP supports it** (inside a Lody session, after reading `lody_help`):
    - **Agent Roles** — Call `lody_catalog` (`machines`, `agent_configs`) to resolve IDs, then call `lody_agent_role` (`create` or `update`) so the user can click **Save** directly on the review card.
-   - **Scheduled Tasks** — Call `lody_schedule` (`action: "propose"`) to post a **Schedule this task?** card in chat.
+   - **Scheduled Tasks** — Call `lody_schedule` (`action: "propose"` for a new task, or `action: "propose_edit"` for edits to an existing task's title, prompt, or rule) to post a confirmation card in chat.
    - **Workspace MCP Servers** — On an explicit user request, call `lody_mcp_configure` to create the unselected catalog entry, then include `[Authenticate & Enable in MCP Settings](lody://settings/mcp?server=<id>)` so one click opens that server's local keyring/OAuth editor.
 2. **Pair UI breadcrumb paths with clickable `lody://` Action Links** — Always write both the human-readable menu path and the Markdown link so older clients and external terminals stay readable while Lody renders an interactive chip that opens the exact modal/dialog in place:
    - Example: `Open **Settings -> Agents** ([Configure Codex](lody://settings/agents?create=codex))`
